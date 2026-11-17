@@ -1,6 +1,6 @@
 /* =====================================================================
    Mrigank Bhargava — Portfolio
-   Pure HTML + CSS. No JavaScript.
+   Pure HTML + CSS. The only JS is a 6-line inline clock in index.html.
    ---------------------------------------------------------------------
    1.  Tokens
    2.  Reset & base
@@ -509,6 +509,11 @@ body::after {
   text-transform: uppercase;
   color: rgb(255 255 255 / .78);
   animation: rise 1s var(--ease) .2s both;
+}
+
+.hero__clock {
+  font-variant-numeric: tabular-nums;     /* digits don't jiggle as they change */
+  color: #fff;
 }
 
 .hero__inner {

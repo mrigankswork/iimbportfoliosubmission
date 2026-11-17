@@ -23,7 +23,7 @@
   <!-- Playfair Display only for the Project Janseva wordmark (subset to its letters) -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&text=Project%20Janseva&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css?v=8">
+  <link rel="stylesheet" href="style.css?v=9">
 </head>
 <body>
 
@@ -70,7 +70,7 @@
         <div class="scene__vignette"></div>
       </div>
 
-      <p class="hero__coords">Delhi, India · 28.6° N, 77.2° E · IST, UTC+5:30</p>
+      <p class="hero__coords">Delhi, India · 28.6° N, 77.2° E · <time class="hero__clock" id="local-time">UTC+5:30</time> IST</p>
 
       <div class="hero__inner container">
         <div class="hero__content">
@@ -488,5 +488,17 @@
     </div>
 
   </main>
+
+  <!-- The site's only JavaScript: live Delhi time in the hero (same as mrigank.info) -->
+  <script>
+    (function () {
+      var el = document.getElementById('local-time');
+      if (!el || !window.Intl) return;
+      var fmt = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Kolkata' });
+      function tick() { el.textContent = fmt.format(new Date()); }
+      tick();
+      setInterval(tick, 15000);
+    })();
+  </script>
 </body>
 </html>
