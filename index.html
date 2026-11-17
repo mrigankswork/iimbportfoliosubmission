@@ -20,6 +20,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <!-- Playfair Display only for the Project Janseva wordmark (subset to its letters) -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&text=Project%20Janseva&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
 </head>
@@ -80,14 +82,17 @@
           </div>
         </div>
 
-        <figure class="hero-photo">
-          <img class="hero-photo__img" src="images/un-senegal.jpg" width="1200" height="1121"
-               alt="Mrigank, in a dark suit and striped tie, speaking at a wooden lectern in front of Senegal's green and yellow flag">
-          <figcaption class="hero-photo__cap">
+        <a class="hero-photo" href="https://webtv.un.org/en/asset/k15/k15u7flcna?kalturaStartTime=10031" target="_blank" rel="noopener">
+          <span class="hero-photo__frame">
+            <img class="hero-photo__img" src="images/un-senegal.jpg" width="1200" height="1121"
+                 alt="Mrigank, in a dark suit and striped tie, speaking at a wooden lectern in front of Senegal's green and yellow flag">
+            <span class="hero-photo__play" aria-hidden="true">▶</span>
+          </span>
+          <span class="hero-photo__cap">
             <span>Mission of Senegal to the UN · 2025</span>
-            <a class="link-amber" href="https://webtv.un.org/en/asset/k15/k15u7flcna?kalturaStartTime=10031" target="_blank" rel="noopener">Watch on UN WebTV <span aria-hidden="true">→</span></a>
-          </figcaption>
-        </figure>
+            <span class="link-amber">Watch on UN WebTV <span aria-hidden="true">↗</span></span>
+          </span>
+        </a>
       </div>
     </section>
 
@@ -185,7 +190,10 @@
           </div>
           <div class="feature__text">
             <p class="eyebrow">Founder · Social impact · 2024–</p>
-            <h3 class="feature__title">Project Janseva</h3>
+            <h3 class="feature__title janseva-mark">
+              <img class="janseva-mark__logo" src="images/janseva-logo.png" width="240" height="240" alt="" loading="lazy">
+              <span>Project Janseva</span>
+            </h3>
             <p>A social-impact organisation digitising access to public services — running electoral literacy drives, civic-rights sessions and extreme-weather support campaigns for the communities that need them most.</p>
             <p><strong>Janseva's work took me to the UN ECOSOC Youth Forum in New York</strong> in 2025.</p>
             <dl class="stats">
