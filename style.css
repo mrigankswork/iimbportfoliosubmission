@@ -621,38 +621,76 @@ body::after {
 
 
 /* ---------------------------------------------------------------------
-   10. Highlights strip — full-bleed, hairline grid
+   10. Highlights — infinite CSS carousel of floating glass pills
+       Each row holds two identical groups; the track slides by -50% so the
+       loop is seamless. The second group is aria-hidden.
    --------------------------------------------------------------------- */
 .highlights {
+  padding-block: clamp(3rem, 6vw, 4.5rem);
   border-block: 1px solid var(--line);
+  overflow: hidden;
 }
-.highlights__grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-}
-.highlight {
-  padding: clamp(2rem, 4vw, 3.25rem) clamp(1.25rem, 2.5vw, 2.5rem);
-  border-right: 1px solid var(--line);
-  transition: background-color .4s;
-}
-.highlight:last-child { border-right: 0; }
-.highlight:hover { background: rgb(0 0 0 / .28); }
+.highlights .label { margin-bottom: 1.5rem; }
 
-.highlight__big {
-  font-size: clamp(2rem, 3.4vw, 3rem);
+.marquee {
+  overflow: hidden;
+  padding-block: 12px;                    /* room for the float */
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+.marquee + .marquee { margin-top: .5rem; }
+
+.marquee__track {
+  display: flex;
+  width: max-content;
+  animation: marquee 70s linear infinite;
+}
+.marquee--reverse .marquee__track {
+  animation-duration: 80s;
+  animation-direction: reverse;
+}
+.marquee:hover .marquee__track { animation-play-state: paused; }
+
+.marquee__group {
+  display: flex;
+  gap: 1rem;
+  padding-right: 1rem;                    /* = gap, keeps the loop seamless */
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.1rem;
+  padding: .85rem 1.6rem .85rem 1.35rem;
+  border-radius: var(--pill);
+  background: var(--glass);
+  border: 1px solid var(--glass-b);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 10px 30px rgb(0 0 0 / .25), inset 0 1px 0 rgb(255 255 255 / .08);
+  white-space: nowrap;
+  animation: float 6s ease-in-out infinite alternate;
+  transition: border-color .35s, background-color .35s;
+}
+.pill:hover { border-color: rgb(255 255 255 / .3); background: rgb(255 255 255 / .1); }
+.pill:nth-child(3n+2) { animation-delay: -2s; animation-duration: 7s; }
+.pill:nth-child(3n)   { animation-delay: -4s; animation-duration: 5.5s; }
+
+.pill__big {
+  font-size: 1.7rem;
   font-weight: 300;
-  letter-spacing: -0.04em;
-  line-height: 1.05;
+  letter-spacing: -0.035em;
+  line-height: 1;
   color: #fff;
 }
-.highlight__big em { color: var(--amber); }
+.pill__big em { color: var(--amber); }
 
-.highlight__label {
-  margin-top: .9rem;
-  max-width: 22ch;
-  font-size: .85rem;
-  line-height: 1.5;
-  color: var(--fog);
+.pill__txt {
+  max-width: 30ch;
+  white-space: normal;
+  font-size: .8rem;
+  line-height: 1.35;
+  color: var(--mist);
 }
 
 
@@ -1169,6 +1207,15 @@ body::after {
   to   { opacity: 1; }
 }
 
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+@keyframes float {
+  from { transform: translateY(-5px); }
+  to   { transform: translateY(5px); }
+}
+
 @keyframes wave {
   from { transform: scaleY(.35); }
   to   { transform: scaleY(1); }
@@ -1195,9 +1242,6 @@ body::after {
 
   .about__grid { grid-template-columns: 1fr; align-items: start; }
 
-  .highlights__grid { grid-template-columns: repeat(2, 1fr); }
-  .highlight:nth-child(2) { border-right: 0; }
-  .highlight:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
 
   .feature,
   .feature--flip {
@@ -1247,9 +1291,6 @@ body::after {
 @media (max-width: 480px) {
   .about__cols { grid-template-columns: 1fr; }
 
-  .highlights__grid { grid-template-columns: 1fr; }
-  .highlight { border-right: 0; border-bottom: 1px solid var(--line); }
-  .highlight:last-child { border-bottom: 0; }
 
   .hero-photo { width: min(100%, 280px); }
 
@@ -1257,6 +1298,10 @@ body::after {
   .janseva__pill { font-size: .75rem; top: .8rem; }
   .janseva__pill--l { left: .8rem; }
   .janseva__pill--r { right: .8rem; }
+
+  .pill { padding: .7rem 1.2rem .7rem 1.05rem; gap: .8rem; }
+  .pill__big { font-size: 1.35rem; }
+  .pill__txt { font-size: .74rem; max-width: 20ch; }
 
   .ledger { gap: 1.4rem; }
   .ledger__chip { gap: .7rem; }
@@ -1272,6 +1317,11 @@ body::after {
     animation: none !important;
     transition: none !important;
   }
+  /* Carousel becomes a swipeable row; drop the duplicate group */
+  .marquee { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+  .marquee__group[aria-hidden="true"] { display: none; }
+  .marquee__group { padding-inline: var(--pad); }
+
   /* Without the scroll animation, keep "What I do" readable */
   .whatido__list li { color: rgb(255 255 255 / .85); }
 }
