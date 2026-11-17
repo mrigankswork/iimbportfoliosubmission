@@ -812,51 +812,37 @@ body::after {
   transition: transform .8s var(--ease), filter .6s;
 }
 .feature:hover .janseva__photo { transform: scale(1.03); filter: none; }
-.janseva::after {                       /* legibility gradient under the badge */
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(0deg, rgb(10 12 11 / .75) 0%, transparent 55%);
-  pointer-events: none;
-}
 
-.janseva__badge {
+/* ---- Circular glass logo badge (both venture cards) ---- */
+.logo-badge {
   position: absolute;
-  z-index: 1;
+  z-index: 2;
+  top: 1rem;
   left: 1rem;
-  bottom: 1rem;
   display: grid;
-  grid-template-columns: auto 1fr;
-  column-gap: .9rem;
-  align-items: center;
-  padding: .6rem 1.4rem .6rem .6rem;
-  border-radius: var(--pill);
-  background: rgb(17 19 18 / .45);
-  border: 1px solid var(--glass-b);
+  place-items: center;
+  width: 84px;
+  height: 84px;
+  padding: 6px;                           /* the glass ring */
+  border-radius: 50%;
+  background: rgb(255 255 255 / .12);
+  border: 1px solid rgb(255 255 255 / .28);
   -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
+  box-shadow: 0 10px 30px rgb(0 0 0 / .35);
 }
-.janseva__logo {
-  grid-row: span 2;
-  width: 58px;
-  height: 58px;
+.logo-badge > img,
+.logo-badge__disc {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   background: #000;
-  border: 1px solid var(--glass-b);
+  object-fit: cover;
 }
-.janseva__name {
-  font-family: "Playfair Display", var(--serif);
-  font-size: 1.35rem;
-  line-height: 1.1;
-  color: #fff;
-}
-.janseva__tag {
-  font-size: .6rem;
-  font-weight: 500;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  color: rgb(255 255 255 / .7);
-}
+.logo-badge__disc { background: #0b0d0c; color: var(--amber); }
+.logo-badge__disc svg { width: 52%; height: 52%; }
 
 /* ---- AudioLedger visual: dark card with amber glow ---- */
 .ledger {
@@ -1347,10 +1333,7 @@ body::after {
   .hero-photo { width: 100%; }
 
   .feature__visual { aspect-ratio: 5 / 4; }
-  .janseva__badge { left: .7rem; bottom: .7rem; padding-right: 1rem; column-gap: .7rem; }
-  .janseva__logo { width: 46px; height: 46px; }
-  .janseva__name { font-size: 1.1rem; }
-  .janseva__tag { font-size: .52rem; letter-spacing: .14em; }
+  .logo-badge { width: 64px; height: 64px; top: .75rem; left: .75rem; padding: 5px; }
 
   .pill { padding: .7rem 1.2rem .7rem 1.05rem; gap: .8rem; }
   .pill__big { font-size: 1.35rem; }

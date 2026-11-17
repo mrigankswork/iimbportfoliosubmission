@@ -23,7 +23,7 @@
   <!-- Playfair Display only for the Project Janseva wordmark (subset to its letters) -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&text=Project%20Janseva&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=8">
 </head>
 <body>
 
@@ -70,7 +70,7 @@
         <div class="scene__vignette"></div>
       </div>
 
-      <p class="hero__coords">Delhi, India · 28.6° N, 77.2° E</p>
+      <p class="hero__coords">Delhi, India · 28.6° N, 77.2° E · IST, UTC+5:30</p>
 
       <div class="hero__inner container">
         <div class="hero__content">
@@ -182,11 +182,9 @@
           <div class="feature__visual janseva">
             <img class="janseva__photo" src="images/janseva.jpg" width="1125" height="844" loading="lazy"
                  alt="A Janseva literacy session: schoolchildren sitting on mats outdoors, writing in notebooks while volunteers guide them">
-            <div class="janseva__badge">
-              <img class="janseva__logo" src="images/janseva-logo.png" width="240" height="240" alt="">
-              <span class="janseva__name">Project Janseva</span>
-              <span class="janseva__tag">Equality • Awareness • Action</span>
-            </div>
+            <span class="logo-badge">
+              <img src="images/janseva-logo.png" width="240" height="240" alt="Project Janseva logo">
+            </span>
           </div>
           <div class="feature__text">
             <p class="eyebrow">Founder · Social impact · 2024–</p>
@@ -204,6 +202,13 @@
         <!-- B) AudioLedger (mirrored) -->
         <article class="feature feature--flip reveal">
           <div class="feature__visual ledger" aria-hidden="true">
+            <span class="logo-badge">
+              <span class="logo-badge__disc">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+                </svg>
+              </span>
+            </span>
             <p class="ledger__quote">“₹450 ka doodh, Sharma ji ko udhaar”</p>
             <div class="wave">
               <span></span><span></span><span></span><span></span><span></span><span></span>
